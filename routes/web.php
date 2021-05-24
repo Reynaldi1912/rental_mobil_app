@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MobilPribadiController;
+use App\Http\Controllers\MobilUmumController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,4 +24,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::resource('mobil-pribadi', MobilPribadiController::class);
+Route::resource('mobil-umum', MobilUmumController::class);
 
