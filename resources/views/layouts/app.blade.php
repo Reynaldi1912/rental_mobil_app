@@ -26,7 +26,7 @@
       </a>
       <hr class="sidebar-divider my-0">
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{route('home')}}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
@@ -38,7 +38,7 @@
         <a class="nav-link" href="#"
           aria-expanded="true" aria-controls="collapseBootstrap">
           <i class="far fa-fw fa-window-maximize"></i>
-          <span>Edit Informasi</span>
+          <span>Kendaraan yang di Sewa</span>
         </a>
       </li>
       <li class="nav-item">
@@ -50,8 +50,8 @@
         <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Jenis Kendaraan</h6>
-            <a class="collapse-item" href="form_basics.html">Mobil Pribadi</a>
-            <a class="collapse-item" href="form_advanceds.html">Mobil Umum</a>
+            <a class="collapse-item" href="{{route('mobil-pribadi.index')}}">Mobil Pribadi</a>
+            <a class="collapse-item" href="{{route('mobil-pribadi.index')}}">Mobil Umum</a>
           </div>
         </div>
       </li>
@@ -91,7 +91,7 @@
       <li class="nav-item">
         <a class="nav-link" href="charts.html">
           <i class="fas fa-tasks fa-fw"></i>
-          <span>Riwayat Pesanan</span>
+          <span>Riwayat Penyewa</span>
         </a>
       </li>
       <hr class="sidebar-divider">
