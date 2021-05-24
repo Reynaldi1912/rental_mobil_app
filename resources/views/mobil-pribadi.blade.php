@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
+<h2 class="pb-3">Zona Penyewaan Mobil <strong>Pribadi</strong></h2>
   <table class="table table-striped table-hover">
     <thead>
       <tr class="bg-dark text-white">

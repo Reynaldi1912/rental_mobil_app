@@ -51,7 +51,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Jenis Kendaraan</h6>
             <a class="collapse-item" href="{{route('mobil-pribadi.index')}}">Mobil Pribadi</a>
-            <a class="collapse-item" href="{{route('mobil-pribadi.index')}}">Mobil Umum</a>
+            <a class="collapse-item" href="{{route('mobil-umum.index')}}">Mobil Umum</a>
           </div>
         </div>
       </li>
