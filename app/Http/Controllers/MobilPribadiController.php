@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\kendaraan_pribadi;
 
 class MobilPribadiController extends Controller
 {
@@ -34,7 +35,21 @@ class MobilPribadiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama' => 'required',
+            'harga' => 'required',
+            'stok' => 'required',
+            ]);
+
+        $kendaraan_pribadi = new kendaraan_pribadi;
+
+        $kendaraan_pribadi->nama = $request->get('nama');
+        $kendaraan_pribadi->harga = $request->get('harga');
+        $kendaraan_pribadi->stok = $request->get('stok');
+
+        $kendaraan_pribadi->save();
+
+        return redirect()->route('mobil-pribadi.index');
     }
 
     /**
