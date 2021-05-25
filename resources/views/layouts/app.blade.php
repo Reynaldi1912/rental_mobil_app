@@ -34,6 +34,7 @@
       <div class="sidebar-heading">
         Features
       </div>
+      @if(auth()->user()->level=="user")
       <li class="nav-item">
         <a class="nav-link" href="#"
           aria-expanded="true" aria-controls="collapseBootstrap">
@@ -41,6 +42,7 @@
           <span>Kendaraan yang di Sewa</span>
         </a>
       </li>
+      @endif
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
           aria-controls="collapseForm">
@@ -55,6 +57,8 @@
           </div>
         </div>
       </li>
+
+      @if (auth()->user()->level=="admin")
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
           aria-controls="collapseTable">
@@ -69,6 +73,8 @@
           </div>
         </div>
       </li>
+      @endif
+
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
         Data Diri
@@ -95,7 +101,9 @@
         </a>
       </li>
       <hr class="sidebar-divider">
-      <div class="version" id="version-ruangadmin"></div>
+      <div class="version">Copyright &copy Reynaldi</div>
+      <div class="version" id="version-ruangadmin">Copyright &copy Reynaldi Dimasqi</div>
+
     </ul>
     <!-- Sidebar -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -106,6 +114,14 @@
             <i class="fa fa-bars"></i>
           </button>
           <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown no-arrow text-center">
+              <h5 class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                    @if(auth()->user()->level=="admin")
+                    <span class="ml-2 d-none d-lg-inline text-white small"><strong> Administrator </strong></span>
+                    @endif
+              </h5>
+            </li>
             <div class="topbar-divider d-none d-sm-block"></div>
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"

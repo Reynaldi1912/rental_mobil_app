@@ -25,4 +25,16 @@ class HomeController extends Controller
     {
         return view('home');
     }
+    public function persewaan_kp()
+    {
+        return view('persewaan-kendaraan-pribadi');
+    }
+    public function persewaan_ku()
+    {
+        return view('persewaan-kendaraan-umum');
+    }
+    public function cek_sewa()
+    {
+        return view('cek-sewa');
+    }
 }

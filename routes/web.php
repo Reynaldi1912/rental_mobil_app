@@ -25,6 +25,11 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('mobil-pribadi', MobilPribadiController::class);
-Route::resource('mobil-umum', MobilUmumController::class);
+// Route::resource('mobil-pribadi', MobilPribadiController::class);
+// Route::resource('mobil-umum', MobilUmumController::class);
+
+Route::group(['middleware' => ['auth','ceklevel:admin']], function(){
+    Route::resource('mobil-pribadi', MobilPribadiController::class);
+    Route::resource('mobil-umum', MobilUmumController::class);
+});
 
