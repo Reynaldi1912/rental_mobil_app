@@ -14,5 +14,9 @@ class kendaraan_pribadi extends Model
         'nama',
         'harga',
         'stok',
+        'tipe_mobil',
+        'transmisi',
+        'jumlah_kursi',
+        'foto',
     ];
 }

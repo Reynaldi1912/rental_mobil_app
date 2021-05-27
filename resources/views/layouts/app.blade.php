@@ -7,11 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link href="img/logo/logo.png" rel="icon">
+  <link href="/img/logo/logo.png" rel="icon">
   <title>Mobilku</title>
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <link href="css/ruang-admin.min.css" rel="stylesheet">
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="/css/ruang-admin.min.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -20,7 +20,7 @@
     <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
         <div class="sidebar-brand-icon">
-          <img src="img/logo/logo2.png">
+          <img src="/img/logo/logo2.png">
         </div>
         <div class="sidebar-brand-text mx-3">Mobilku</div>
       </a>
@@ -53,7 +53,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Jenis Kendaraan</h6>
             <a class="collapse-item" href="{{route('mobil-pribadi.index')}}">Mobil Pribadi</a>
-            <a class="collapse-item" href="{{route('mobil-umum.index')}}">Mobil Umum</a>
+            <a class="collapse-item" href="{{route('mobil-umum.index')}}">Minibus</a>
           </div>
         </div>
       </li>
@@ -69,7 +69,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Mobil Yang DiSewa</h6>
             <a class="collapse-item" href="simple-tables.html">Mobil Pribadi</a>
-            <a class="collapse-item" href="datatables.html">Mobil Umum</a>
+            <a class="collapse-item" href="datatables.html">Minibus</a>
           </div>
         </div>
       </li>
@@ -188,12 +188,12 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-  <script src="js/ruang-admin.min.js"></script>
-  <script src="vendor/chart.js/Chart.min.js"></script>
-  <script src="js/demo/chart-area-demo.js"></script> 
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="/js/ruang-admin.min.js"></script>
+  <script src="/vendor/chart.js/Chart.min.js"></script>
+  <script src="/js/demo/chart-area-demo.js"></script> 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.min.js" integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous"></script> 
@@ -217,6 +217,37 @@
           }
         });
       });
+    });
+
+    $('#hapusPribadiModal').on('show.bs.modal',function(event){
+      var button = $(event.relatedTarget)
+
+      var cat_id = button.data('catid')
+      var modal = $(this)
+
+      modal.find('.modal-body #cat_id').val(cat_id);
+    })
+
+    $('#editModal').on('show.bs.modal',function(event){
+      var button = $(event.relatedTarget)
+
+      var nama = button.data('namke')
+      var harga = button.data('harke')
+      var stok = button.data('stokke')
+      var kursi = button.data('kurke')
+      var id = button.data('catid')
+
+
+      var modal = $(this)
+
+      modal.find('.modal-body #nama').val(nama);
+      modal.find('.modal-body #harga').val(harga);
+      modal.find('.modal-body #stok').val(stok);
+      modal.find('.modal-body #kursi').val(kursi);
+      modal.find('.modal-body #ken_id').val(id);
+
+
+
     });
   </script>
 </body>
