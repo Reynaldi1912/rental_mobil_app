@@ -24,6 +24,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/frofile/{id}', [App\Http\Controllers\HomeController::class, 'frofile'])->name('frofile');
+Route::post('/frofile', [App\Http\Controllers\HomeController::class, 'update_frofile'])->name('update_frofil');
+
 
 Route::resource('mobil-pribadi', MobilPribadiController::class);
 Route::resource('mobil-umum', MobilUmumController::class);
