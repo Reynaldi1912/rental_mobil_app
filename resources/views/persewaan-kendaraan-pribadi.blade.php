@@ -12,24 +12,36 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td><a href="#">Honda Ayla</a></td>
-        <td><a href="#">Dimasqi</a></td>
-        <td>5</td>
-        <td>
-            <div class="box">
-                <select name="status" >
-                    <option value="batal">Batal</option>
-                    <option value="pending">Pending</option>
-                    <option value="setuju">Setuju</option>
-                </select>
-                <a href="#" class="btn btn-outline-primary" type="submit">
-                    <i class="fas fa-save"></i>
-                </a>
-            </div>
-        </td>
-    </tr>
+      <?php
+        $no =1;
+      ?>
+    
+      @foreach($sewa_pribadi as $sewa)
+      <form method="post" action="{{ route('kendaraan-pribadi.update',1) }}">
+        @csrf
+        @method('PATCH')
+        <input type="hidden" value="{{$sewa->id}}" name="id_sewa">
+        <tr>
+            <th scope="row">{{$no}}</th>
+            <td><a href="{{ route('mobil-pribadi.show',$sewa->kendaraan_pribadi->id) }}">{{$sewa->kendaraan_pribadi->nama}}</a></td>
+            <td><a href="#">{{$sewa->user->name}}</a></td>
+            <td>{{$sewa->kendaraan_pribadi->stok}}</td>
+            <td>
+                <div class="box">
+                    <select name="status">
+                        <option value="pending">Pending</option>
+                        <option value="batal">Batalkan</option>
+                        <option value="setuju">Setuju</option>
+                    </select>
+                    <button  class="btn btn-outline-primary" type=submit><i class="fas fa-save"></i></button>
+                </div>
+            </td>
+        </tr>
+        <?php
+            $no++;
+        ?>
+    </form>  
+    @endforeach
   </tbody>
 </table>
 @endsection

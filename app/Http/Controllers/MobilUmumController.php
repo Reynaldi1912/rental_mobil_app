@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\kendaraan_umum;
 use Illuminate\Support\Facades\Storage;
 use App\Models\sewa_kendaraan_umum;
+use App\Models\sewa_kendaraan_pribadi;
+use App\Models\kendaraan_pribadi;
+
+
 
 
 
@@ -31,9 +35,12 @@ class MobilUmumController extends Controller
         // ->simplePaginate(2);
         $sewa = sewa_kendaraan_umum::with('kendaraan_umum','User')->where('status','pending')->get();
         $pending_umum_total = count($sewa);
+        $sewa_pribadi = sewa_kendaraan_pribadi::with('kendaraan_pribadi','User')->where('status','pending')->get();
+        $pending_pribadi_total = count($sewa_pribadi);
+
         $kendaraan = kendaraan_umum::all();
         // return $kendaraan;
-        return view('mobil-umum' , ['kendaraan'=>$kendaraan , 'pending_umum_total'=>$pending_umum_total])
+        return view('mobil-umum' , ['kendaraan'=>$kendaraan , 'pending_umum_total'=>$pending_umum_total,'pending_pribadi_total'=>$pending_pribadi_total ])
         ->with('i',(request()->input('page',1)-1)*5);
     }
 
@@ -96,9 +103,11 @@ class MobilUmumController extends Controller
     {
          $kendaraan = kendaraan_umum::all()->where('id',$id)->first();
          $sewa = sewa_kendaraan_umum::with('kendaraan_umum','User')->where('status','pending')->get();
+         $sewa_pribadi = sewa_kendaraan_pribadi::with('kendaraan_pribadi','User')->where('status','pending')->get();
+         $pending_pribadi_total = count($sewa_pribadi);
         $pending_umum_total = count($sewa);
         //  return $kendaraan;
-         return view('detail', ['kendaraan'=>$kendaraan , 'pending_umum_total'=>$pending_umum_total]);
+         return view('detail', ['kendaraan'=>$kendaraan , 'pending_umum_total'=>$pending_umum_total , 'pending_pribadi_total'=>$pending_pribadi_total ]);
     }
 
     /**

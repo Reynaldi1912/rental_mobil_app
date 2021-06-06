@@ -69,7 +69,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Mobil Yang DiSewa</h6>
             <a class="collapse-item" href="{{route('kendaraan-pribadi.index')}}">Mobil Pribadi
-              <span class="badge badge-danger badge-counter">3</span>
+              <span class="badge badge-danger badge-counter">{{$pending_pribadi_total}}</span>
             </a>
             <a class="collapse-item" href="{{route('kendaraan-umum.index')}}">Mini Bus
               <span class="badge badge-danger badge-counter">{{$pending_umum_total}}</span>
@@ -108,12 +108,6 @@
         </a>
       </li>
       @endif
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-          <i class="fas fa-tasks fa-fw"></i>
-          <span>Riwayat Penyewa</span>
-        </a>
-      </li>
       <hr class="sidebar-divider">
       <div class="version">Copyright &copy Reynaldi</div>
       <div class="version" id="version-ruangadmin">Copyright &copy Reynaldi Dimasqi</div>

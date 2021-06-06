@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\kendaraan_umum;
 use App\Models\sewa_kendaraan_umum;
 use App\Models\User;
+use App\Models\sewa_kendaraan_pribadi;
+use App\Models\kendaraan_pribadi;
+
 
 
 
@@ -18,10 +21,12 @@ class StatusMobilUmumController extends Controller
      */
     public function index()
     {
+        $sewa_pribadi = sewa_kendaraan_pribadi::with('kendaraan_pribadi','User')->where('status','pending')->get();
+        $pending_pribadi_total = count($sewa_pribadi);
         $sewa = sewa_kendaraan_umum::with('kendaraan_umum','User')->where('status','pending')->get();
         $pending_umum_total = count($sewa);
         // return $pending_umum_total;
-        return view('persewaan-kendaraan-umum',['sewa'=>$sewa ,'pending_umum_total'=>$pending_umum_total]);
+        return view('persewaan-kendaraan-umum',['sewa'=>$sewa ,'pending_umum_total'=>$pending_umum_total , 'pending_pribadi_total'=>$pending_pribadi_total ]);
     }
 
     /**

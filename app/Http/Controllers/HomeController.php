@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Auth;
 use App\Models\sewa_kendaraan_umum;
+use App\Models\sewa_kendaraan_pribadi;
+use App\Models\kendaraan_pribadi;
 
 
 class HomeController extends Controller
@@ -30,8 +32,11 @@ class HomeController extends Controller
     {
         $sewa = sewa_kendaraan_umum::with('kendaraan_umum','User')->where('status','pending')->get();
         $pending_umum_total = count($sewa);
+        $sewa_pribadi = sewa_kendaraan_pribadi::with('kendaraan_pribadi','User')->where('status','pending')->get();
+        $pending_pribadi_total = count($sewa_pribadi);
 
-        return view('home',['pending_umum_total'=>$pending_umum_total]);
+
+        return view('home',['pending_umum_total'=>$pending_umum_total ,'pending_pribadi_total'=>$pending_pribadi_total ]);
     }
     public function persewaan_kp()
     {
@@ -46,7 +51,13 @@ class HomeController extends Controller
         return view('cek-sewa');
     }
     public function frofile(){
-        return view('frofile');
+        $sewa = sewa_kendaraan_umum::with('kendaraan_umum','User')->where('status','pending')->get();
+        $pending_umum_total = count($sewa);
+        $sewa_pribadi = sewa_kendaraan_pribadi::with('kendaraan_pribadi','User')->where('status','pending')->get();
+        $pending_pribadi_total = count($sewa_pribadi);
+
+
+        return view('frofile',['pending_umum_total'=>$pending_umum_total , 'pending_pribadi_total'=>$pending_pribadi_total ]);
     }
     public function update_frofile(Request $request ){
         $request->validate([
