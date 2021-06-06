@@ -68,8 +68,12 @@
         <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Mobil Yang DiSewa</h6>
-            <a class="collapse-item" href="simple-tables.html">Mobil Pribadi</a>
-            <a class="collapse-item" href="datatables.html">Minibus</a>
+            <a class="collapse-item" href="{{route('kendaraan-pribadi.index')}}">Mobil Pribadi
+              <span class="badge badge-danger badge-counter">3</span>
+            </a>
+            <a class="collapse-item" href="{{route('kendaraan-umum.index')}}">Mini Bus
+              <span class="badge badge-danger badge-counter">{{$pending_umum_total}}</span>
+            </a>
           </div>
         </div>
       </li>
@@ -79,6 +83,7 @@
       <div class="sidebar-heading">
         Data Diri
       </div>
+      @if(auth()->user()->level=="user")
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePage" aria-expanded="true"
           aria-controls="collapsePage">
@@ -94,6 +99,15 @@
           </div>
         </div>
       </li>
+      @endif
+      @if(auth()->user()->level=="admin")
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="fas fa-fw fa-columns"></i>
+          <span>Data Pengguna</span>
+        </a>
+      </li>
+      @endif
       <li class="nav-item">
         <a class="nav-link" href="charts.html">
           <i class="fas fa-tasks fa-fw"></i>
@@ -250,8 +264,6 @@
       modal.find('.modal-body #stok').val(stok);
       modal.find('.modal-body #kursi').val(kursi);
       modal.find('.modal-body #ken_id').val(id);
-
-
 
     });
   </script>

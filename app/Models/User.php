@@ -42,4 +42,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function sewa_kendaraan_umum(){
+        return $this->hasMany(sewa_kendaraan_umum::class);
+    }
+    public function sewa_kendaraan_pribadi(){
+        return $this->hasMany(sewa_kendaraan_umum::class);
+    }
 }

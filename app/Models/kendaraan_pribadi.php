@@ -19,4 +19,7 @@ class kendaraan_pribadi extends Model
         'jumlah_kursi',
         'foto',
     ];
+    public function sewa_kendaraan_pribadi(){
+        return $this->hasMany(sewa_kendaraan_pribadi::class);
+    }
 }

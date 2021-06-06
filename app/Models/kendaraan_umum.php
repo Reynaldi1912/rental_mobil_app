@@ -19,4 +19,7 @@ class kendaraan_umum extends Model
         'jumlah_kursi',
         'foto',
     ];
+    public function sewa_kendaraan_umum(){
+        return $this->hasMany(sewa_kendaraan_umum::class);
+    }
 }

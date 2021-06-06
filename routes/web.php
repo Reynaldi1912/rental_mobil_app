@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MobilPribadiController;
 use App\Http\Controllers\MobilUmumController;
+use App\Http\Controllers\StatusMobilPribadiController;
+use App\Http\Controllers\StatusMobilUmumController;
 
 
 /*
@@ -30,6 +32,10 @@ Route::post('/frofile', [App\Http\Controllers\HomeController::class, 'update_fro
 
 Route::resource('mobil-pribadi', MobilPribadiController::class);
 Route::resource('mobil-umum', MobilUmumController::class);
+
+Route::resource('status/kendaraan-pribadi', StatusMobilPribadiController::class);
+Route::resource('status/kendaraan-umum', StatusMobilUmumController::class);
+
 
 // Route::resource('mobil-pribadi', MobilPribadiController::class);
 // Route::resource('mobil-umum', MobilUmumController::class);

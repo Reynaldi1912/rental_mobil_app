@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\kendaraan_umum;
 use Illuminate\Support\Facades\Storage;
+use App\Models\sewa_kendaraan_umum;
+
 
 
 class MobilUmumController extends Controller
@@ -27,9 +29,11 @@ class MobilUmumController extends Controller
         // ])
         // ->orderBy('id','desc')
         // ->simplePaginate(2);
+        $sewa = sewa_kendaraan_umum::with('kendaraan_umum','User')->where('status','pending')->get();
+        $pending_umum_total = count($sewa);
         $kendaraan = kendaraan_umum::all();
         // return $kendaraan;
-        return view('mobil-umum' , compact('kendaraan'))
+        return view('mobil-umum' , ['kendaraan'=>$kendaraan , 'pending_umum_total'=>$pending_umum_total])
         ->with('i',(request()->input('page',1)-1)*5);
     }
 
@@ -91,8 +95,10 @@ class MobilUmumController extends Controller
     public function show($id)
     {
          $kendaraan = kendaraan_umum::all()->where('id',$id)->first();
+         $sewa = sewa_kendaraan_umum::with('kendaraan_umum','User')->where('status','pending')->get();
+        $pending_umum_total = count($sewa);
         //  return $kendaraan;
-         return view('detail', ['kendaraan'=>$kendaraan]);
+         return view('detail', ['kendaraan'=>$kendaraan , 'pending_umum_total'=>$pending_umum_total]);
     }
 
     /**
@@ -130,7 +136,7 @@ class MobilUmumController extends Controller
 
             if($request->file('foto')){
                 if($kendaraan->foto != 'images/other.png' && file_exists(storage_path('app/public/' . $kendaraan->foto))){
-                    Storage::delete('public/' . $kendaraa->foto);
+                    Storage::delete('public/' . $kendaraan->foto);
                 }
                 $image_name = $request->file('foto')->store('images', 'public');
                 $kendaraan->foto = $image_name;

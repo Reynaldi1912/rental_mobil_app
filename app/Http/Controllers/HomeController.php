@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Auth;
+use App\Models\sewa_kendaraan_umum;
+
 
 class HomeController extends Controller
 {
@@ -26,7 +28,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $sewa = sewa_kendaraan_umum::with('kendaraan_umum','User')->where('status','pending')->get();
+        $pending_umum_total = count($sewa);
+
+        return view('home',['pending_umum_total'=>$pending_umum_total]);
     }
     public function persewaan_kp()
     {

@@ -13,7 +13,9 @@
             <i class="fas fa-search"></i>
           </button>
             &nbsp&nbsp
-          <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-plus"></i> Data</button>
+            @if(auth()->user()->level=="admin")
+              <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-plus"></i> Data</button>
+            @endif
       </div>
     </div>
   </div>
