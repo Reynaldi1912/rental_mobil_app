@@ -14,19 +14,23 @@
   <?php
     $i =1;
   ?>
+  @foreach($user as $user)
+  @if($user->user->level == "user")
     <tr>
       <th scope="row">{{$i}}</th>
-      <td>Mark</td>
-      <td>1941720142</td>
+      <td>{{$user->user->name}}</td>
+      <td>{{$user->nik}}</td>
       <td>
-        <a href="">
-          <button class="btn btn-primary">Detail</button>
-        </a>
-        <a href="">
-          <button class="btn btn-danger">Delete</button>
+        <a href="{{route('pengguna.show',$user->user_id)}}">
+              <button class="btn btn-primary">Detail</button>
         </a>
       </td>
     </tr>
+    <?php
+      $i++;
+    ?>
+  @endif
+  @endforeach
   </tbody>
 </table>
 @endsection

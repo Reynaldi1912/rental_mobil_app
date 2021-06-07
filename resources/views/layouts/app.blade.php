@@ -81,7 +81,7 @@
 
       <hr class="sidebar-divider">
       <div class="sidebar-heading">
-        Data Diri
+        Data 
       </div>
       @if(auth()->user()->level=="user")
       <li class="nav-item">
@@ -101,10 +101,24 @@
       @endif
       @if(auth()->user()->level=="admin")
       <li class="nav-item">
-        <a class="nav-link" href="{{route('pengguna.index')}}">
+        <a class="nav-link" href="{{route('index_all')}}">
           <i class="fas fa-fw fa-columns"></i>
           <span>Data Pengguna</span>
         </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePage" aria-expanded="true"
+          aria-controls="collapsePage">
+          <i class="fas fa-fw fa-columns"></i>
+          <span>Data Sewaan</span>
+        </a>
+        <div id="collapsePage" class="collapse" aria-labelledby="headingPage" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Data Sewaan</h6>
+            <a class="collapse-item" href="{{route('sewa.index')}}">Sedang Disewa</a>
+            <a class="collapse-item" href="{{route('sewa1.index')}}">Riwayat Penyewa</a>
+          </div>
+        </div>
       </li>
       @endif
       <hr class="sidebar-divider">

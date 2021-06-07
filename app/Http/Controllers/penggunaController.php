@@ -26,7 +26,9 @@ class penggunaController extends Controller
         $sewa = sewa_kendaraan_umum::with('kendaraan_umum','User')->where('status','pending')->get();
         $pending_umum_total = count($sewa);
         // return $pending_umum_total;
-        return view('pengguna',['sewa_pribadi'=>$sewa_pribadi ,'pending_pribadi_total'=>$pending_pribadi_total , 'pending_umum_total'=>$pending_umum_total]);
+        $user = detail_user::with('User')->get();
+
+        return view('pengguna',['user'=>$user,'sewa_pribadi'=>$sewa_pribadi ,'pending_pribadi_total'=>$pending_pribadi_total , 'pending_umum_total'=>$pending_umum_total]);
     }
 
     /**
@@ -68,14 +70,11 @@ class penggunaController extends Controller
         $validation = detail_user::all();
 
             $total = count($validation);
-            $valid;
+            $valid=1;
 
                 for($i = 0; $i < $total ; $i++){
                     if($validation[$i]->user_id == $user->id){
                         $valid=0;
-                        break;
-                    }else{
-                        $valid=1;
                     }
                 }
 
@@ -201,8 +200,23 @@ class penggunaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request , $id)
     {
-        //
+        $user_detail=detail_user::findOrFail($request->id)->delete();
+        // $user = User::all()->where()
+        // return $kendaraan_destroy;
+        return back();
+    }
+
+    public function index_all(){
+
+        $sewa_pribadi = sewa_kendaraan_pribadi::with('kendaraan_pribadi','User')->where('status','pending')->get();
+        $pending_pribadi_total = count($sewa_pribadi);
+        $sewa = sewa_kendaraan_umum::with('kendaraan_umum','User')->where('status','pending')->get();
+        $pending_umum_total = count($sewa);
+
+        $user = detail_user::with('User')->get();
+
+        return view('pengguna',['user'=>$user , 'pending_pribadi_total'=>$pending_pribadi_total , 'pending_umum_total'=>$pending_umum_total]);
     }
 }
