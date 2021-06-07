@@ -24,7 +24,7 @@
         <tr>
             <th scope="row">{{$no}}</th>
             <td><a href="{{ route('mobil-umum.show',$sewa->kendaraan_umum->id) }}">{{$sewa->kendaraan_umum->nama}}</a></td>
-            <td><a href="#">{{$sewa->user->name}}</a></td>
+            <td><a href="{{ route('pengguna.show', $sewa->user_id) }}">{{$sewa->user->name}}</a></td>
             <td>{{$sewa->kendaraan_umum->stok}}</td>
             <td>
                 <div class="box">
