@@ -49,4 +49,7 @@ class User extends Authenticatable
     public function sewa_kendaraan_pribadi(){
         return $this->hasMany(sewa_kendaraan_umum::class);
     }
+    public function user_detail(){
+        return $this->hasMany(user_detail::class);
+    }
 }

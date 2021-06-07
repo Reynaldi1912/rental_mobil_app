@@ -93,16 +93,15 @@
         <div id="collapsePage" class="collapse" aria-labelledby="headingPage" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Data Pribadi</h6>
-            <a class="collapse-item" href="login.html">Informasi Data Diri</a>
-            <a class="collapse-item" href="register.html">Edit Kelengkapan Data</a>
-            <a class="collapse-item" href="404.html">Upload KTP</a>
+            <a class="collapse-item" href="{{route('pengguna.show',auth()->user()->id)}}">Informasi Data Diri</a>
+            <a class="collapse-item" href="{{route('pengguna.edit',auth()->user()->id)}}">Edit Kelengkapan Data</a>
           </div>
         </div>
       </li>
       @endif
       @if(auth()->user()->level=="admin")
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{route('pengguna.index')}}">
           <i class="fas fa-fw fa-columns"></i>
           <span>Data Pengguna</span>
         </a>

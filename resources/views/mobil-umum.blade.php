@@ -13,7 +13,11 @@
             <i class="fas fa-search"></i>
           </button>
             &nbsp&nbsp
-          <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-plus"></i> Data</button>
+          @if(auth()->user()->level=="admin")
+            <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-plus"></i> Data</button>
+          @endif
+
+
       </div>
     </div>
   </div>
@@ -44,7 +48,7 @@
         <td>{{$kendaraan->stok}}</td>
         <td>
           @if(auth()->user()->level=="user")
-          <button class="btn btn-primary">Detail Kendaraan</button>
+          <a class="btn btn-info" href="{{ route('mobil-umum.show',$kendaraan->id) }}">Detail</a>
           <button class="btn btn-success">Sewa Sekarang</button>
           @endif
 

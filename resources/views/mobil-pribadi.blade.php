@@ -46,7 +46,7 @@
         <td>{{$kendaraan->stok}}</td>
         <td>
           @if(auth()->user()->level=="user")
-          <button class="btn btn-primary">Detail Kendaraan</button>
+          <a class="btn btn-info" href="{{ route('mobil-pribadi.show',$kendaraan->id) }}">Detail</a>
           <button class="btn btn-success">Sewa Sekarang</button>
           @endif
 
