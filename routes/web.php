@@ -5,6 +5,8 @@ use App\Http\Controllers\MobilPribadiController;
 use App\Http\Controllers\MobilUmumController;
 use App\Http\Controllers\StatusMobilPribadiController;
 use App\Http\Controllers\StatusMobilUmumController;
+use App\Http\Controllers\penggunaController;
+
 
 
 /*
@@ -35,6 +37,9 @@ Route::resource('mobil-umum', MobilUmumController::class);
 
 Route::resource('status/kendaraan-pribadi', StatusMobilPribadiController::class);
 Route::resource('status/kendaraan-umum', StatusMobilUmumController::class);
+
+Route::resource('pengguna', penggunaController::class);
+
 
 
 // Route::resource('mobil-pribadi', MobilPribadiController::class);
