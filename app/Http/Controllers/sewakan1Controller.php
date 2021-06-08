@@ -55,6 +55,8 @@ class sewakan1Controller extends Controller
         $user->nama_kendaraan = $request->get('kendaraan');
         $user->nama_penyewa = $request->get('penyewa');
         $user->status = $request->get('status');
+        $user->tgl_pinjam = $request->get('tgl_pinjam');
+        $user->biaya = $request->get('biaya');
 
 
         $user->save();

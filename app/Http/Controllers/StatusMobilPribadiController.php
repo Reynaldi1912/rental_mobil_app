@@ -8,6 +8,8 @@ use App\Models\kendaraan_umum;
 use App\Models\kendaraan_pribadi;
 use App\Models\sewa_kendaraan_umum;
 use App\Models\User;
+use App\Models\riwayat;
+
 
 
 class StatusMobilPribadiController extends Controller
@@ -84,8 +86,9 @@ class StatusMobilPribadiController extends Controller
             'id_sewa' => 'required',
             ]);
 
-        $kendaraan = sewa_kendaraan_pribadi::all()->where('id',$request->get('id_sewa'))->first();
+        $kendaraan = sewa_kendaraan_pribadi::with('User')->where('id',$request->get('id_sewa'))->first();
         $kendaraan_pribadi = kendaraan_pribadi::all()->where('id',$kendaraan->kendaraan_pribadi->id)->first();
+        $riwayat = new riwayat;
 
 
         $kendaraan->status = $request->get('status');
@@ -94,6 +97,15 @@ class StatusMobilPribadiController extends Controller
         if($kendaraan->status == 'setuju'){
             $kendaraan_pribadi->stok = $kendaraan_pribadi->stok-1;
             $kendaraan_pribadi->save();
+        }else if($kendaraan->status == 'batal'){
+            $riwayat->nama_kendaraan = $kendaraan_pribadi->nama;
+            $riwayat->nama_penyewa = $kendaraan->user->name;
+            $riwayat->status = $kendaraan->status;
+            $riwayat->tgl_pinjam = $kendaraan->tanggal_dipakai;
+            $riwayat->biaya = ($kendaraan_pribadi->harga)*($kendaraan->jumlah_hari);
+            $riwayat->save();
+
+            $destroy=sewa_kendaraan_pribadi::findOrFail($request->get('id_sewa'))->delete();
         }
        
 

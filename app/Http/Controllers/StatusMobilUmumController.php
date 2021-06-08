@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\kendaraan_umum;
 use App\Models\sewa_kendaraan_umum;
 use App\Models\User;
+use App\Models\riwayat;
 use App\Models\sewa_kendaraan_pribadi;
 use App\Models\kendaraan_pribadi;
 
@@ -88,6 +89,7 @@ class StatusMobilUmumController extends Controller
 
         $kendaraan = sewa_kendaraan_umum::all()->where('id',$request->get('id_sewa'))->first();
         $kendaraan_umum = kendaraan_umum::all()->where('id',$kendaraan->kendaraan_umum->id)->first();
+        $riwayat = new riwayat;
 
 
         $kendaraan->status = $request->get('status');
@@ -96,6 +98,15 @@ class StatusMobilUmumController extends Controller
         if($kendaraan->status == 'setuju'){
             $kendaraan_umum->stok = $kendaraan_umum->stok-1;
             $kendaraan_umum->save();
+        }else if($kendaraan->status == 'batal'){
+            $riwayat->nama_kendaraan = $kendaraan_umum->nama;
+            $riwayat->nama_penyewa = $kendaraan->user->name;
+            $riwayat->status = $kendaraan->status;
+            $riwayat->tgl_pinjam = $kendaraan->tanggal_dipakai;
+            $riwayat->biaya = ($kendaraan_umum->harga)*($kendaraan->jumlah_hari);
+            $riwayat->save();
+
+            $destroy=sewa_kendaraan_umum::findOrFail($request->get('id_sewa'))->delete();
         }
        
 

@@ -8,6 +8,8 @@
       <th scope="col">Kendaraan</th>
       <th scope="col">Penyewa</th>
       <th scope="col">Stok</th>
+      <th scope="col">Tanggal Pinjam</th>
+      <th scope="col">Total Hari</th>
       <th scope="col">Status</th>
     </tr>
   </thead>
@@ -26,6 +28,8 @@
             <td><a href="{{ route('mobil-umum.show',$sewa->kendaraan_umum->id) }}">{{$sewa->kendaraan_umum->nama}}</a></td>
             <td><a href="{{ route('pengguna.show', $sewa->user_id) }}">{{$sewa->user->name}}</a></td>
             <td>{{$sewa->kendaraan_umum->stok}}</td>
+            <td>{{$sewa->tanggal_dipakai}}</td>
+            <td>{{$sewa->jumlah_hari}} Hari</td>
             <td>
                 <div class="box">
                     <select name="status">

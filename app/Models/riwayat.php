@@ -14,6 +14,8 @@ class riwayat extends Model
         'nama_kendaraan',
         'nama_penyewa',
         'status',
+        'tgl_pinjam',
+        'biaya',
         'nik',
         'created_at',
     ];

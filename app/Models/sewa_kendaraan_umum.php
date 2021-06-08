@@ -14,6 +14,8 @@ class sewa_kendaraan_umum extends Model
         'kendaraan_umum_id',
         'user_id',
         'status',
+        'tanggal_dipakai',
+        'jumlah_hari'
     ];
     public function kendaraan_umum(){
         return $this->belongsTo(kendaraan_umum::class);
