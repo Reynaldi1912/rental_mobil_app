@@ -34,6 +34,8 @@ class MobilUmumController extends Controller
         // ->orderBy('id','desc')
         // ->simplePaginate(2);
         $sewa = sewa_kendaraan_umum::with('kendaraan_umum','User')->where('status','pending')->get();
+
+
         $pending_umum_total = count($sewa);
         $sewa_pribadi = sewa_kendaraan_pribadi::with('kendaraan_pribadi','User')->where('status','pending')->get();
         $pending_pribadi_total = count($sewa_pribadi);
