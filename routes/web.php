@@ -8,7 +8,7 @@ use App\Http\Controllers\StatusMobilUmumController;
 use App\Http\Controllers\penggunaController;
 use App\Http\Controllers\sewakanController;
 use App\Http\Controllers\sewakan1Controller;
-
+use App\Http\Controllers\cekSewaControlller;
 
 
 
@@ -44,7 +44,7 @@ Route::resource('status/kendaraan-umum', StatusMobilUmumController::class);
 Route::resource('pengguna', penggunaController::class);
 Route::resource('sewa', sewakanController::class);
 Route::resource('sewa1', sewakan1Controller::class);
-
+Route::resource('cek-sewa', cekSewaControlller::class);
 
 Route::get('/pengguna-sekarang', [App\Http\Controllers\penggunaController::class, 'index_all'])->name('index_all');
 
