@@ -15,7 +15,8 @@ class sewa_kendaraan_pribadi extends Model
         'user_id',
         'status',
         'tanggal_dipakai',
-        'jumlah_hari'
+        'jumlah_hari',
+        'total'
     ];
     public function kendaraan_pribadi(){
         return $this->belongsTo(kendaraan_pribadi::class);
