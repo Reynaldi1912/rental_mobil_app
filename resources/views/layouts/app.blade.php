@@ -36,7 +36,7 @@
       </div>
       @if(auth()->user()->level=="user")
       <li class="nav-item">
-        <a class="nav-link" href="#"
+        <a class="nav-link" href="{{route('cek-sewa.index')}}"
           aria-expanded="true" aria-controls="collapseBootstrap">
           <i class="far fa-fw fa-window-maximize"></i>
           <span>Kendaraan yang di Sewa</span>
