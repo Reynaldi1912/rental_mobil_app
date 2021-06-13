@@ -31,7 +31,7 @@
                 <button class="btn btn-secondary">Cetak Resi</button>
             </a>
         @elseif($kp->status == 'setuju')
-            <a href="#">
+            <a href="{{route('cek-sewa.show',1)}}">
                 <button class="btn btn-primary">Cetak Resi</button>
             </a>
         @endif

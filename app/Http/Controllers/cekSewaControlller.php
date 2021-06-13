@@ -56,7 +56,7 @@ class cekSewaControlller extends Controller
      */
     public function show($id)
     {
-        //
+        return view('resi');
     }
 
     /**
