@@ -35,13 +35,9 @@
             <td>{{$sewap->kendaraan_pribadi->nama}}</td>
             <td>{{$sewap->User->name}}</td>   
             <td>{{$sewap->tanggal_dipakai}}</td>
-            <?php
-            $harga_total = ($sewap->jumlah_hari) * ($sewap->kendaraan_pribadi->harga);
-            ?>
-            <input type="hidden" value="{{$harga_total}}" name="biaya">\
-
+            <input type="hidden" value="{{$sewap->total}}" name="biaya">\
             <td>{{$sewap->status}}</td>   
-            <td>Rp.{{$harga_total}}</td>   
+            <td>Rp.{{$sewap->total}}</td>   
             <td>
                 <button class="btn btn-warning" type="submit">Selesai</button>
             </td>        
@@ -67,15 +63,9 @@
             <td>{{$sewa->kendaraan_umum->nama}}</td>
             <td>{{$sewa->User->name}}</td>
             <td>{{$sewa->tanggal_dipakai}}</td>
-           
-            <?php
-
-              $harga_total = ($sewa->jumlah_hari) * ($sewa->kendaraan_umum->harga);
-            ?>
-            <input type="hidden" value="{{$harga_total}}" name="biaya">
+            <input type="hidden" value="{{$sewa->total}}" name="biaya">
             <td>{{$sewa->status}}</td>  
-            <td>Rp.{{$harga_total}}</td>   
-
+            <td>Rp.{{$sewa_total}}</td>   
             <td>
                 <button class="btn btn-warning" type=submit>Selesai</button>
             </td>   
