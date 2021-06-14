@@ -44,7 +44,12 @@ Route::resource('status/kendaraan-umum', StatusMobilUmumController::class);
 Route::resource('pengguna', penggunaController::class);
 Route::resource('sewa', sewakanController::class);
 Route::resource('sewa1', sewakan1Controller::class);
+Route::get('cek-sewa/cetakPdf', [cekSewaControlller::class, 'createPDF'])->name('cetak');
 Route::resource('cek-sewa', cekSewaControlller::class);
+Route::post('/cek_sewa_umum', [App\Http\Controllers\cekSewaControlller::class, 'store_umum'])->name('cek-sewa.store_umum');
+
+
+
 
 Route::get('/pengguna-sekarang', [App\Http\Controllers\penggunaController::class, 'index_all'])->name('index_all');
 
