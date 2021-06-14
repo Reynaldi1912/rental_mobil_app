@@ -49,7 +49,7 @@
         <td>
           @if(auth()->user()->level=="user")
           <a class="btn btn-info" href="{{ route('mobil-umum.show',$kendaraan->id) }}">Detail</a>
-          <button class="btn btn-success">Sewa Sekarang</button>
+          <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#sewa_sekarang" data-catid="{{$kendaraan->id}}">Sewa Sekarang</button>
           @endif
 
           @if(auth()->user()->level=="admin")
@@ -220,3 +220,34 @@
                 </div>
               </div>
               <!-- end modal tambah data -->
+
+
+                    <!-- Modal sewa-->
+<div class="modal fade" id="sewa_sekarang" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    <form method="post" action="{{ route('cek-sewa.store_umum') }}">
+    @csrf
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" name="id" id="cat_id" value="" >
+        <div class="form-group">
+          <label for="stok">Kapan Tanggal Pemakaian ?</label>
+          <input type="date" name="tanggal_pakai" class="form-control" id="tanggal_pakai" value="">
+          </div>
+          <div class="form-group">
+            <label for="kursi">Sewa Berapa Hari ?</label>
+            <input type="number" name="sewa_hari" class="form-control" id="sewa_hari" value="">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Sewa Sekarang</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
