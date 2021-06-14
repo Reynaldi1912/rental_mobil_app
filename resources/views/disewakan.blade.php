@@ -65,7 +65,7 @@
             <td>{{$sewa->tanggal_dipakai}}</td>
             <input type="hidden" value="{{$sewa->total}}" name="biaya">
             <td>{{$sewa->status}}</td>  
-            <td>Rp.{{$sewa_total}}</td>   
+            <td>Rp.{{$sewa->total}}</td>   
             <td>
                 <button class="btn btn-warning" type=submit>Selesai</button>
             </td>   

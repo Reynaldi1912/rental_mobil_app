@@ -28,7 +28,7 @@
       <td>
         @if($kp->status == 'pending')
             <a href="#">
-                <button class="btn btn-secondary">Cetak Resi</button>
+                <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#cek_resi">Cetak Resi</button>
             </a>
         @elseif($kp->status == 'setuju')
         <form method="get" action="{{ route('cetak')}}" >

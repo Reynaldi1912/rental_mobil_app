@@ -40,9 +40,9 @@
                                             <p>Harga Sewa /hari</p>
                                         </div>
                                         <div class="col">
-                                        @if($mobil == 0)
+                                        @if($mobil == 1)
                                             <p class="text-right">Rp.{{$data->kendaraan_pribadi->harga}}</p>
-                                        @elseif($mobil ==1 )
+                                        @elseif($mobil ==0 )
                                             <p class="text-right">Rp.{{$data->kendaraan_umum->harga}}</p>
                                         @endif
                                         </div>
@@ -87,11 +87,11 @@
                 <div class="col">  
                     DESKRIPSI KENDARAAN
                     <hr> 
-                    @if($mobil == 0)
+                    @if($mobil == 1)
                         <h5><strong>{{$data->kendaraan_pribadi->nama}}</strong></h5>
                         <p>Type Kendaraan : {{$data->kendaraan_pribadi->tipe_mobil}}</p>
                         <p>Digunakan Tanggal {{$data->tanggal_dipakai}} dengan penyewaan mobil {{$data->jumlah_hari}} hari</p>
-                    @elseif($mobil ==1 )
+                    @elseif($mobil == 0)
                         <h5><strong>{{$data->kendaraan_umum->nama}}</strong></h5>
                         <p>Type Kendaraan : {{$data->kendaraan_umum->tipe_mobil}}</p>
                         <p>Digunakan Tanggal {{$data->tanggal_dipakai}} dengan penyewaan kendaraan {{$data->jumlah_hari}} hari</p>

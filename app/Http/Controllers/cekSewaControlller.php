@@ -146,9 +146,9 @@ class cekSewaControlller extends Controller
     }
     public function createPDF(Request $request) {
         // retreive all records from db
-        if($request->get('mobil') == 0){
+        if($request->get('mobil') == 1){
             $data = sewa_kendaraan_pribadi::with('kendaraan_pribadi','User')->where('id',$request->get('id'))->first();
-        }else if($request->get('mobil') == 1){
+        }else if($request->get('mobil') == 0){
             $data = sewa_kendaraan_umum::with('kendaraan_umum','User')->where('id',$request->get('id'))->first();
         }
         $user_detail = detail_user::with('user')->where('user_id',$data->user->id)->first();
@@ -157,7 +157,8 @@ class cekSewaControlller extends Controller
         // share data to view
          $pdf = PDF::loadview('resi', ['data'=>$data , 'mobil'=>$mobil ,'user_detail'=>$user_detail])->stream();
         // download PDF file with download method
-        // return $pdf;
+        // return $mobil;
+        // return $data->kendaraan_umum->harga;
         return view('resi', ['data'=>$data , 'mobil'=>$mobil, 'user_detail'=>$user_detail]);
 
         // return $data;
