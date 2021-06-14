@@ -4,20 +4,14 @@
         <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="/css/ruang-admin.min.css" rel="stylesheet">
     </head>
-    <body>
+    <body onload="window.print();">
         <div class="container-fluid">
             <h4 class="text-primary mt-5"><strong>Rincian Transaksi</strong></h4>
             <hr style="border-color:blue">
             <div class="row mt-5">
-                <div class="col-8 row text-center">
-                <div class="col-2"></div>
-                <div class="col">
-                    <div class="container border border-3 border-secondary p-2">
-                        <h4>Jumlah Pembayaran</h4>
-                        <h4><strong>Rp.200000</strong></h4>
-                    </div>
-                </div>
-                <div class="col-2"></div>
+                <div class="col-8 text-center border border-2">
+                    <h4 class="text-center mt-5">Total Pembayaran</h4>
+                    <h4><strong>Rp.{{$data->total}}</strong></h4>
                 </div>
                 <div class="col-4">
                     <table class="table table-hover">
@@ -46,7 +40,11 @@
                                             <p>Harga Sewa /hari</p>
                                         </div>
                                         <div class="col">
-                                            <p class="text-right">Rp.100000</p>
+                                        @if($mobil == 0)
+                                            <p class="text-right">Rp.{{$data->kendaraan_pribadi->harga}}</p>
+                                        @elseif($mobil ==1 )
+                                            <p class="text-right">Rp.{{$data->kendaraan_umum->harga}}</p>
+                                        @endif
                                         </div>
                                     </div>
                                     <div class="row">
@@ -54,7 +52,7 @@
                                             <p>Jumlah Hari Sewa</p>
                                         </div>
                                         <div class="col">
-                                            <p class="text-right">2 Hari</p>
+                                            <p class="text-right">{{$data->jumlah_hari}} Hari</p>
                                         </div>
                                     </div>
                                 </td>
@@ -66,7 +64,7 @@
                                             <p>Total Pembayaran</p>
                                         </div>
                                         <div class="col">
-                                            <p class="text-right">Rp.200000</p>
+                                            <p class="text-right">Rp.{{$data->total}}</p>
                                         </div>
                                     </div>
                                 </td>
@@ -78,31 +76,37 @@
 
             <div class="row border p-2" style="background-color:#DEFFFA">
                 <div class="col">
-                    Nomor Pesanan : 4564365362
+                    Nomor Pesanan : 194172{{$data->id}}
                 </div>
                 <div class="col text-right">
-                    Dipesan pada tanggal 11 Juni 2021
+                    Dipesan pada tanggal {{$data->created_at->format('Y-m-d')}}
                 </div>
             </div>
 
             <div class="row border border-2 mt-3 p-2">
                 <div class="col">  
-                    DESKRIPSI MOBIL
+                    DESKRIPSI KENDARAAN
                     <hr> 
-                    <h5><strong>Mobil Avanza</strong></h5>
-                    <p>Type Kendaraan : City Car</p>
-                    <p>Digunakan Tanggal 12 Juni 2021 dengan penyewaan mobil 2 hari</p>
+                    @if($mobil == 0)
+                        <h5><strong>{{$data->kendaraan_pribadi->nama}}</strong></h5>
+                        <p>Type Kendaraan : {{$data->kendaraan_pribadi->tipe_mobil}}</p>
+                        <p>Digunakan Tanggal {{$data->tanggal_dipakai}} dengan penyewaan mobil {{$data->jumlah_hari}} hari</p>
+                    @elseif($mobil ==1 )
+                        <h5><strong>{{$data->kendaraan_umum->nama}}</strong></h5>
+                        <p>Type Kendaraan : {{$data->kendaraan_umum->tipe_mobil}}</p>
+                        <p>Digunakan Tanggal {{$data->tanggal_dipakai}} dengan penyewaan kendaraan {{$data->jumlah_hari}} hari</p>
+                    @endif
                 </div>
                 <div class="col">  
                     DESKRIPSI PENYEWA
                     <hr> 
-                    <h5><strong>Dimasqi Allifudin Faiz</strong></h5>
-                    <p>NIK : 1263727637264</p>
-                    <p>Alamat : jl.Bojonergoro no 12 , Kabupaten Bojonegoro</p>
+                    <h5><strong>{{$user_detail->nama_lengkap}}</strong></h5>
+                    <p>NIK : {{$user_detail->nik}}</p>
+                    <p>Alamat : {{$user_detail->alamat_lengkap}}</p>
                 </div>
             </div>
             <div class="container-fluid pt-1" style="background-color:#DEFFFA">
-                <p class="text-center">RESI INI DISIMPAN DAN DIBERIKAN KE ADMIN SAAT PENGAMBILAN MOBIL <br> <strong>RESI INI BERLAKU : 12 Juni 2021</strong></p>
+                <p class="text-center">RESI INI DISIMPAN DAN DIBERIKAN KE ADMIN SAAT PENGAMBILAN MOBIL <br> <strong>RESI INI BERLAKU HINGGA {{$data->tanggal_dipakai}}</strong></p>
             </div>
 
         </div>
