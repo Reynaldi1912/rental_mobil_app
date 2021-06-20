@@ -8,10 +8,6 @@
     </div>
     <div class="col">
       <div class="d-flex justify-content-end row">
-          <input type="text" placeholder="Cari" />
-          <button class="btn btn-primary" type="button">
-            <i class="fas fa-search"></i>
-          </button>
             &nbsp&nbsp
           @if(auth()->user()->level=="admin")
             <button class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-plus"></i> Data</button>
